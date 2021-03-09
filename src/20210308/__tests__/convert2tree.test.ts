@@ -1,4 +1,4 @@
-import { convert2Tree } from '../../src/20210308/convert2tree';
+import { convert2Tree } from '../convert2tree';
 
 test('convert2Tree', () => {
   expect(

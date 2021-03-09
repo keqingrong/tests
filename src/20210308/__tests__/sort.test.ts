@@ -1,4 +1,4 @@
-import { sort } from '../../src/20210308/sort';
+import { sort } from '../sort';
 
 test('sort', () => {
   expect(
