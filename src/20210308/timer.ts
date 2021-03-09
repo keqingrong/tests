@@ -14,11 +14,11 @@
  * }, 200);
  */
 interface MyTimeout {
-  valueOf(): NodeJS.Timeout | null;
+  valueOf(): ReturnType<typeof setTimeout> | null;
 }
 
 function mySetInterval(callback: () => void, duration: number) {
-  let timeoutId: NodeJS.Timeout | null = null;
+  let timeoutId: ReturnType<typeof setTimeout> | null = null;
 
   const myTimeoutId: MyTimeout = {
     valueOf: () => timeoutId,
