@@ -13,15 +13,17 @@
  *   console.log('xxx');
  * }, 200);
  */
+type Timeout = ReturnType<typeof setTimeout>;
+
 interface MyTimeout {
-  valueOf(): ReturnType<typeof setTimeout> | null;
+  id(): Timeout | null;
 }
 
 function mySetInterval(callback: () => void, duration: number) {
-  let timeoutId: ReturnType<typeof setTimeout> | null = null;
+  let timeoutId: Timeout | null = null;
 
   const myTimeoutId: MyTimeout = {
-    valueOf: () => timeoutId,
+    id: () => timeoutId,
   };
 
   const loop = () => {
@@ -37,7 +39,10 @@ function mySetInterval(callback: () => void, duration: number) {
 }
 
 function myClearInterval(myIntervalId: MyTimeout) {
-  clearTimeout(Number(myIntervalId));
+  const timeoutId = myIntervalId.id();
+  if (timeoutId !== null) {
+    clearTimeout(timeoutId);
+  }
 }
 
 /**
